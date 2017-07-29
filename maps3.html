@@ -92,7 +92,7 @@
         <div id="title">
           Autocomplete search
         </div>
-        
+
       </div>
       <div id="pac-container">
         <input id="pac-input" type="text"
@@ -115,6 +115,10 @@
         var map = new google.maps.Map(document.getElementById('map'), {
           center: {lat: -33.8688, lng: 151.2195},
           zoom: 13
+        });
+
+        map.addListener('click', function(event) {
+           console.log(event.latLng.lat());
         });
         var card = document.getElementById('pac-card');
         var input = document.getElementById('pac-input');
@@ -194,6 +198,14 @@
               autocomplete.setOptions({strictBounds: this.checked});
             });
       }
+    </script>
+    <script>
+      google.maps.event.addListener(marker, "click", function (event) {
+      var latitude = event.latLng.lat();
+      var longitude = event.latLng.lng();
+      console.log( latitude + ', ' + longitude );
+
+})
     </script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAbC2jQehj7AlOZ-z0DvFjwtIlvBtury6g&libraries=places&callback=initMap"
         async defer></script>
